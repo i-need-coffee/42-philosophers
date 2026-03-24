@@ -1,0 +1,12 @@
+# ===== Build artifacts =====
+*.o
+obj/
+
+# ===== Executables =====
+philo
+
+# ===== Libraries =====
+*.a
+
+# =====  Tester / Debug =====
+.vscode/
