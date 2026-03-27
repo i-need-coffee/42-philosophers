@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/03/27 11:16:49 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/03/27 16:00:29 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,18 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 # include <sys/time.h>
+# include <pthread.h>
 
-typedef struct s_philo
+typedef struct s_table
 {
-	long	nb_philo;
-	time_t	time_to_die;
-	time_t	time_to_eat;
-	time_t	time_to_sleep;
-	long	must_eat_count;
-}	t_philo;
+	int		nb_philo;
+	long	time_to_die;
+	long	time_to_eat;
+	long	time_to_sleep;
+	int		must_eat_count;
+}	t_table;
 
 size_t	ft_strlen(const char *s);
 void	throw_error(char *err_msg, char *err_loc);

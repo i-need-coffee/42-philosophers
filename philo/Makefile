@@ -6,14 +6,14 @@
 #    By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 11:39:14 by sjolliet          #+#    #+#              #
-#    Updated: 2026/03/27 10:39:47 by sjolliet         ###   ########.fr        #
+#    Updated: 2026/03/27 13:10:35 by sjolliet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= philo
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -g -Iinclude
+CFLAGS			= -Wall -Wextra -Werror -g -pthread -Iinclude
 
 SRC_DIR			= src
 OBJ_DIR			= obj
