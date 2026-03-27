@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/24 11:43:14 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/03/27 10:36:09 by sjolliet         ###   ########.fr       */
+/*   Created: 2026/03/27 10:33:01 by sjolliet          #+#    #+#             */
+/*   Updated: 2026/03/27 10:37:45 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+size_t	ft_strlen(const char *s)
 {
-	if (argc < 5)
-		throw_error("program must have at least 4 args", "philo");
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+void	throw_error(char *err_msg, char *err_loc)
+{
+	write(2, "\033[31mERROR\033[0m ", 16);
+	write(2, err_msg, ft_strlen(err_msg));
+	write(2, ": ", 2);
+	write(2, err_loc, ft_strlen(err_loc));
+	write(2, "\n", 1);
+	exit(EXIT_FAILURE);
 }
