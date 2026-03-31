@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 10:33:01 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/03/31 11:27:44 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/03/31 15:25:51 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,10 @@ void	throw_error(char *err_msg, char *err_loc)
 	write(2, ": ", 2);
 	write(2, err_loc, ft_strlen(err_loc));
 	write(2, "\n", 1);
+}
+
+void	error_exit(char *err_msg, char *err_loc)
+{
+	throw_error(err_msg, err_loc);
+	exit(EXIT_FAILURE);
 }
