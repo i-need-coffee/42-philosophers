@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/03/27 16:00:29 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/03/31 10:10:24 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ typedef struct s_table
 
 size_t	ft_strlen(const char *s);
 void	throw_error(char *err_msg, char *err_loc);
+void	parse_args(t_table *table, char **argv);
 
 #endif

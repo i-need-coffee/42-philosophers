@@ -6,7 +6,7 @@
 #    By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 11:39:14 by sjolliet          #+#    #+#              #
-#    Updated: 2026/03/27 13:10:35 by sjolliet         ###   ########.fr        #
+#    Updated: 2026/03/31 10:00:06 by sjolliet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ OBJ_DIR			= obj
 
 SRCS			= \
 	$(SRC_DIR)/main.c \
-	$(SRC_DIR)/utils.c
+	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/parsing.c
 
 OBJS			= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
