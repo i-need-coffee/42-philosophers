@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 10:09:33 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/03/31 11:45:53 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/03/31 11:56:32 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	parse_args(t_table *table, char **argv)
 	error = 0;
 	while (argv[i])
 	{
+		if (ft_strlen(argv[i]) > 20)
+		{
+			throw_error("arg is too big", argv[i]);
+			error = 1;
+		}
 		if (!is_number(argv[i]))
 		{
 			throw_error("arg is not a number", argv[i]);
@@ -77,4 +82,3 @@ static int	is_number(char *str)
 	}
 	return (1);
 }
-
