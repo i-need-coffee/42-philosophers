@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sjolliet <sjolliet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 10:33:01 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/03/31 15:25:51 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/04/10 17:22:38 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	throw_error(char *err_msg, char *err_loc)
+int	throw_error(char *err_msg, char *err_loc)
 {
 	write(2, "\033[31mERROR\033[0m ", 16);
 	write(2, err_msg, ft_strlen(err_msg));
 	write(2, ": ", 2);
 	write(2, err_loc, ft_strlen(err_loc));
 	write(2, "\n", 1);
+	return (1);
 }
 
 void	error_exit(char *err_msg, char *err_loc)
