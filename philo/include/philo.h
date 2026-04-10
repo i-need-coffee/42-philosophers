@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sjolliet <sjolliet@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/03/31 15:25:57 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/04/10 15:57:04 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <string.h>
 # include <sys/time.h>
 # include <pthread.h>
 
