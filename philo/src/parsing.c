@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 17:20:21 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/04/10 18:23:50 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/08/06 15:11:43 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	parse_args(t_table *table, char **argv)
 	{
 		value = convert_str_to_lld(argv[i]);
 		if (i == 1 && (value > INT_MAX || value <= 0))
-			error = throw_error("Incorrect value", argv[i]);
+			error = throw_error(INCORRECT_VALUE, argv[i]);
 		if (i == 5 && (value > INT_MAX || value < 0))
-			error = throw_error("Incorrect value", argv[i]);
+			error = throw_error(INCORRECT_VALUE, argv[i]);
 		if ((i > 1 && i < 5) && (value > LONG_MAX || value <= 0))
-			error = throw_error("Incorrect value", argv[i]);
+			error = throw_error(INCORRECT_VALUE, argv[i]);
 		i++;
 	}
 	if (error)

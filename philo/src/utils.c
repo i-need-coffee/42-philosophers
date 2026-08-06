@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 10:33:01 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/04/10 17:22:38 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/08/06 14:56:25 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	throw_error(char *err_msg, char *err_loc)
 	write(2, ": ", 2);
 	write(2, err_loc, ft_strlen(err_loc));
 	write(2, "\n", 1);
-	return (1);
+	return (EXIT_FAILURE);
 }
 
 void	error_exit(char *err_msg, char *err_loc)
