@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+         #
+#    By: shadya <shadya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 11:39:14 by sjolliet          #+#    #+#              #
-#    Updated: 2026/03/31 11:27:59 by sjolliet         ###   ########.fr        #
+#    Updated: 2026/08/24 08:28:37 by shadya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ OBJ_DIR			= obj
 SRCS			= \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/utils.c \
-	$(SRC_DIR)/parsing.c
+	$(SRC_DIR)/parsing.c \
+	$(SRC_DIR)/threads.c
 
 OBJS			= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

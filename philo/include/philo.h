@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/08/24 07:45:42 by shadya           ###   ########.fr       */
+/*   Updated: 2026/08/24 08:33:43 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <string.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <stdbool.h>
+# include <errno.h>
 
 /* --  ERROR MESSAGES  -- */
 
@@ -29,6 +31,7 @@
 # define NB_PHILO			"Number of philo must be an INT and bigger than 0"
 # define EAT_COUNT			"Must eat count must be an INT and bigger or equal to 0"
 # define TIME_VALUE			"Time argument must be a LONG and bigger than 0"
+# define ERR_ALLOC 			"Cannot allocate memory"
 
 /* --  STRUCTS  -- */
 
@@ -47,5 +50,7 @@ size_t	ft_strlen(const char *s);
 int		throw_error(char *err_msg, char *err_loc);
 void	parse_args(t_table *table, char **argv);
 void	error_exit(char *err_msg, char *err_loc);
+void	create_and_join_threads(t_table *table);
+void	free_and_null(void **ptr);
 
 #endif

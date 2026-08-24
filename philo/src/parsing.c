@@ -6,14 +6,14 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 17:20:21 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/08/24 07:41:21 by shadya           ###   ########.fr       */
+/*   Updated: 2026/08/24 08:08:34 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 static long long	convert_str_to_lld(const char *nptr);
-static int			ft_isdigit(int c);
+static bool			ft_isdigit(int c);
 
 void	parse_args(t_table *table, char **argv)
 {
@@ -73,7 +73,7 @@ static long long	convert_str_to_lld(const char *nptr)
 	return (res * sign);
 }
 
-static int	ft_isdigit(int c)
+static bool	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
 }

@@ -13,7 +13,11 @@ _This project has been created as part of the 42 curriculum by sjolliet_
 https://medium.com/@denaelgammal/dining-philosophers-problem-42-project-guide-mandatory-part-a20fb8dc530e
 - **Multiple videos on threads from Youtube channer CodeVault**  
 https://www.youtube.com/@CodeVault
+- **Wikipedia page on threads**
+https://en.wikipedia.org/wiki/Thread_(computing)
+- **Wikipedia page on multithreading**
+https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)
 
 ### AI Usage
 AI tools were used as learning and productivity aids for :
-- asking questions about threads
+- asking questions about threads, race conditions and mutex
