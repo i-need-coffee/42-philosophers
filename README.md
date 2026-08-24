@@ -11,11 +11,11 @@ _This project has been created as part of the 42 curriculum by sjolliet_
 ### References
 - **Article on the project itself and how to start it**  
 https://medium.com/@denaelgammal/dining-philosophers-problem-42-project-guide-mandatory-part-a20fb8dc530e
-- **Multiple videos on threads from Youtube channer CodeVault**  
+- **Multiple videos on threads from Youtube channel CodeVault**  
 https://www.youtube.com/@CodeVault
-- **Wikipedia page on threads**
+- **Wikipedia page on threads**  
 https://en.wikipedia.org/wiki/Thread_(computing)
-- **Wikipedia page on multithreading**
+- **Wikipedia page on multithreading**  
 https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)
 
 ### AI Usage
