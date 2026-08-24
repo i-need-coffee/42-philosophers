@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/08/06 15:11:24 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/08/24 07:45:42 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 
 /* --  ERROR MESSAGES  -- */
 
-# define TOO_MANY_ARGS		"Program must have 4 or 5 args"
-# define INCORRECT_VALUE	"Incorrect value"
+# define TOO_MANY_ARGS		"Program must have 4 or 5 arguments"
+# define NB_PHILO			"Number of philo must be an INT and bigger than 0"
+# define EAT_COUNT			"Must eat count must be an INT and bigger or equal to 0"
+# define TIME_VALUE			"Time argument must be a LONG and bigger than 0"
 
 /* --  STRUCTS  -- */
 
