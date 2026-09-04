@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 17:20:21 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/08/24 08:08:34 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/04 14:49:50 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static long long	convert_str_to_lld(const char *nptr)
 			sign = -sign;
 		i++;
 	}
-	while (nptr[i] && ft_isdigit(nptr[i]))
+	while (nptr[i])
 	{
 		if (!ft_isdigit(nptr[i]))
 			return (-1);
