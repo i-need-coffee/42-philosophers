@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/05 18:59:29 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/05 19:49:01 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 
 /* --  ERROR MESSAGES  -- */
 
-# define TOO_MANY_ARGS		"Program must have 4 or 5 arguments"
-# define NB_PHILO			"Number of philo must be an INT and bigger than 0"
-# define EAT_COUNT			"Must eat count must be an INT and bigger or equal to 0"
-# define TIME_VALUE			"Time argument must be a LONG and bigger than 0"
-# define ERR_ALLOC 			"Cannot allocate memory"
+# define TOO_MANY_ARGS	"Program must have 4 or 5 arguments"
+# define NB_PHILO		"Number of philo must be an INT and bigger than 0"
+# define EAT_COUNT		"Must eat count must be an INT and bigger or equal to 0"
+# define TIME_VALUE		"Time argument must be a LONG and bigger than 0"
+# define ERR_ALLOC 		"Cannot allocate memory"
 
 /* --  STRUCTS  -- */
 

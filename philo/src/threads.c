@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/05 19:46:14 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/05 19:51:51 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ bool	create_and_join_threads(t_table *table)
 
 static void	*routine(void *data)
 {
+	t_table	*table;
 	long	start;
 
-	t_table	*table = (t_table *)data;
+	table = (t_table *)data;
 	start = get_time_in_ms();
 	while (1)
 	{
