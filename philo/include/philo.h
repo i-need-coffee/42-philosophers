@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/08/24 08:33:43 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/05 18:59:29 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ typedef struct s_table
 
 size_t	ft_strlen(const char *s);
 int		throw_error(char *err_msg, char *err_loc);
-void	parse_args(t_table *table, char **argv);
-void	error_exit(char *err_msg, char *err_loc);
-void	create_and_join_threads(t_table *table);
+bool	parse_args(t_table *table, char **argv);
+bool	create_and_join_threads(t_table *table);
 void	free_and_null(void **ptr);
 
 #endif

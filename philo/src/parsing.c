@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 17:20:21 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/04 14:49:50 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/05 18:55:01 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static long long	convert_str_to_lld(const char *nptr);
 static bool			ft_isdigit(int c);
+static void			set_table_args(t_table *table, char **argv);
 
-void	parse_args(t_table *table, char **argv)
+bool	parse_args(t_table *table, char **argv)
 {
 	long long	value;
 	int			error;
@@ -35,13 +36,9 @@ void	parse_args(t_table *table, char **argv)
 		i++;
 	}
 	if (error)
-		exit(EXIT_FAILURE);
-	table->nb_philo = (int)convert_str_to_lld(argv[1]);
-	table->time_to_die = (long)convert_str_to_lld(argv[2]);
-	table->time_to_eat = (long)convert_str_to_lld(argv[3]);
-	table->time_to_sleep = (long)convert_str_to_lld(argv[4]);
-	if (argv[5])
-		table->must_eat_count = (int)convert_str_to_lld(argv[5]);
+		return (false);
+	set_table_args(table, argv);
+	return (true);
 }
 
 static long long	convert_str_to_lld(const char *nptr)
@@ -76,4 +73,14 @@ static long long	convert_str_to_lld(const char *nptr)
 static bool	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
+}
+
+static void	set_table_args(t_table *table, char **argv)
+{
+	table->nb_philo = (int)convert_str_to_lld(argv[1]);
+	table->time_to_die = (long)convert_str_to_lld(argv[2]);
+	table->time_to_eat = (long)convert_str_to_lld(argv[3]);
+	table->time_to_sleep = (long)convert_str_to_lld(argv[4]);
+	if (argv[5])
+		table->must_eat_count = (int)convert_str_to_lld(argv[5]);
 }

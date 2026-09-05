@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 10:33:01 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/08/24 08:33:22 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/05 18:51:13 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,6 @@ int	throw_error(char *err_msg, char *err_loc)
 	write(2, err_loc, ft_strlen(err_loc));
 	write(2, "\n", 1);
 	return (EXIT_FAILURE);
-}
-
-void	error_exit(char *err_msg, char *err_loc)
-{
-	throw_error(err_msg, err_loc);
-	exit(EXIT_FAILURE);
 }
 
 void	free_and_null(void **ptr)
