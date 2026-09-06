@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/05 19:49:01 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/05 22:56:02 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_table
 	long	time_to_eat;
 	long	time_to_sleep;
 	int		must_eat_count;
+	int		curr_philo;
 }	t_table;
 
 /* --  FUNCTIONS  -- */
@@ -51,5 +52,7 @@ int		throw_error(char *err_msg, char *err_loc);
 bool	parse_args(t_table *table, char **argv);
 bool	create_and_join_threads(t_table *table);
 void	free_and_null(void **ptr);
+void	ft_usleep(long mls);
+long	get_time_in_ms(void);
 
 #endif
