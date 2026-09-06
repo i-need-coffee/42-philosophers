@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 10:33:01 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/05 22:55:45 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/06 14:55:25 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,10 @@ void	free_and_null(void **ptr)
 	}
 }
 
-void	ft_usleep(long mls)
+void	cleanup(t_data *data)
 {
-	long	start;
-
-	start = get_time_in_ms();
-	while (get_time_in_ms() - start < mls)
-		usleep(500);
-}
-
-long	get_time_in_ms(void)
-{
-	struct timeval	tv;
-	long			seconds;
-	long			microseconds;
-	long			milliseconds;
-
-	gettimeofday(&tv, NULL);
-	seconds = tv.tv_sec;
-	microseconds = tv.tv_usec;
-	milliseconds = (seconds * 1000) + (microseconds / 1000);
-	return (milliseconds);
+	if (!data)
+		return ;
+	free_and_null((void **)&data->philos);
+	free_and_null((void **)&data->threads);
 }
