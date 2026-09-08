@@ -6,13 +6,14 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/08 15:37:48 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/08 19:13:55 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 static bool	init_table(t_table *table);
+static void	init_philo(t_table *table, int i);
 static void	join_created_threads(t_philo *philos, int created_count);
 
 bool	create_threads(t_table *table)
@@ -24,10 +25,7 @@ bool	create_threads(t_table *table)
 	i = 0;
 	while (i < table->nb_philo)
 	{
-		table->philos[i].id = i + 1;
-		table->philos[i].table = table;
-		table->philos[i].left_fork = &table->forks[i];
-		table->philos[i].right_fork = &table->forks[(i + 1) % table->nb_philo];
+		init_philo(table, i);
 		if (pthread_create(&table->philos[i].thread, NULL,
 				&routine, &table->philos[i]) != 0)
 		{
@@ -60,7 +58,18 @@ static bool	init_table(t_table *table)
 		pthread_mutex_init(&table->forks[i], NULL);
 		i++;
 	}
+	pthread_mutex_init(&table->print_lock, NULL);
 	return (true);
+}
+
+static void	init_philo(t_table *table, int i)
+{
+	table->philos[i].id = i + 1;
+	table->philos[i].table = table;
+	table->philos[i].left_fork = &table->forks[i];
+	table->philos[i].right_fork = &table->forks[(i + 1) % table->nb_philo];
+	table->philos[i].last_meal = table->start_time;
+	table->philos[i].meals_eaten = 0;
 }
 
 static void	join_created_threads(t_philo *philos, int created_count)

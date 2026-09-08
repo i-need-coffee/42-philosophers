@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/08 15:16:01 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/08 17:12:48 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@ typedef struct s_table	t_table;
 typedef struct s_philo
 {
 	int				id;
+	long			last_meal;
+	int				meals_eaten;
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	meal_lock;
 	t_table			*table;
 }	t_philo;
 
@@ -54,6 +57,9 @@ struct s_table
 	long			time_to_sleep;
 	int				must_eat_count;
 	long			start_time;
+	bool			simulation_stop;
+	pthread_mutex_t	stop_lock;
+	pthread_mutex_t	print_lock;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 };

@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 10:33:01 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/08 15:48:04 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/08 19:14:22 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	cleanup(t_table *table)
 		i++;
 	}
 	free_and_null((void **)&table->forks);
+	pthread_mutex_destroy(&table->print_lock);
 }
 
 long	get_time_ms(void)
