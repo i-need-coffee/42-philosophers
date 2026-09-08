@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 10:33:01 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/06 14:55:25 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/08 14:22:34 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,24 @@ void	free_and_null(void **ptr)
 	}
 }
 
-void	cleanup(t_data *data)
+void	cleanup(t_table *table)
 {
-	if (!data)
+	if (!table)
 		return ;
-	free_and_null((void **)&data->philos);
-	free_and_null((void **)&data->threads);
+	free_and_null((void **)&table->philos);
+}
+
+long	get_time_ms(void)
+{
+	struct timeval	tv;
+	long			seconds;
+	long			microseconds;
+	long			milliseconds;
+
+	if (gettimeofday(&tv, NULL) == -1)
+		return (throw_error(strerror(errno), "get_time_ms"), -1);
+	seconds = tv.tv_sec;
+	microseconds = tv.tv_usec;
+	milliseconds = (seconds * 1000) + (microseconds / 1000);
+	return (milliseconds);
 }

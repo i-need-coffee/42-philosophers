@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/06 14:56:08 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/08 14:26:32 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,25 @@
 
 /* --  STRUCTS  -- */
 
-typedef struct s_table
+typedef struct s_table	t_table;
+
+typedef struct s_philo
+{
+	int			id;
+	pthread_t	thread;
+	t_table		*table;
+}	t_philo;
+
+struct s_table
 {
 	int		nb_philo;
 	long	time_to_die;
 	long	time_to_eat;
 	long	time_to_sleep;
 	int		must_eat_count;
-}	t_table;
-
-typedef struct s_philo
-{
-	int		id;
-	t_table	*table;
-}	t_philo;
-
-typedef struct s_data
-{
-	t_table		table;
-	t_philo		*philos;
-	pthread_t	*threads;
-}	t_data;
+	long	start_time;
+	t_philo	*philos;
+};
 
 /* --  FUNCTIONS  -- */
 
@@ -64,7 +62,8 @@ int		throw_error(char *err_msg, char *err_loc);
 bool	parse_args(t_table *table, char **argv);
 void	free_and_null(void **ptr);
 void	*routine(void *arg);
-bool	create_threads(t_data *data);
-void	cleanup(t_data *data);
+bool	create_threads(t_table *table);
+void	cleanup(t_table *table);
+long	get_time_ms(void);
 
 #endif

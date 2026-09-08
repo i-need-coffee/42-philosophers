@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:14 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/06 15:00:14 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/08 14:22:11 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_table	table;
 
 	if (argc < 5 || argc > 6)
 		return (throw_error(TOO_MANY_ARGS, "philo"));
-	memset(&data, 0, sizeof(data));
-	if (!parse_args(&data.table, argv))
+	memset(&table, 0, sizeof(table));
+	if (!parse_args(&table, argv))
 		return (EXIT_FAILURE);
-	if (!create_threads(&data))
+	if (!create_threads(&table))
 	{
-		cleanup(&data);
+		cleanup(&table);
 		return (EXIT_FAILURE);
 	}
-	cleanup(&data);
+	cleanup(&table);
 	return (EXIT_SUCCESS);
 }

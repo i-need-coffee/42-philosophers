@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 17:20:21 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/06 15:02:01 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/08 14:22:00 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ static bool	ft_isdigit(int c)
 
 static void	set_table_args(t_table *table, char **argv)
 {
-	memset(table, 0, sizeof(*table));
 	table->nb_philo = (int)convert_str_to_lld(argv[1]);
 	table->time_to_die = (long)convert_str_to_lld(argv[2]);
 	table->time_to_eat = (long)convert_str_to_lld(argv[3]);
