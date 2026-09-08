@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/08 14:26:32 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/08 15:16:01 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,23 @@ typedef struct s_table	t_table;
 
 typedef struct s_philo
 {
-	int			id;
-	pthread_t	thread;
-	t_table		*table;
+	int				id;
+	pthread_t		thread;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	t_table			*table;
 }	t_philo;
 
 struct s_table
 {
-	int		nb_philo;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
-	int		must_eat_count;
-	long	start_time;
-	t_philo	*philos;
+	int				nb_philo;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	int				must_eat_count;
+	long			start_time;
+	pthread_mutex_t	*forks;
+	t_philo			*philos;
 };
 
 /* --  FUNCTIONS  -- */

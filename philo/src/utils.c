@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/27 10:33:01 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/08 14:22:34 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/08 15:48:04 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,18 @@ void	free_and_null(void **ptr)
 
 void	cleanup(t_table *table)
 {
+	int	i;
+
 	if (!table)
 		return ;
 	free_and_null((void **)&table->philos);
+	i = 0;
+	while (i < table->nb_philo)
+	{
+		pthread_mutex_destroy(&table->forks[i]);
+		i++;
+	}
+	free_and_null((void **)&table->forks);
 }
 
 long	get_time_ms(void)

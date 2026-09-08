@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/08 13:42:33 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/08 15:37:48 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ bool	create_threads(t_table *table)
 	{
 		table->philos[i].id = i + 1;
 		table->philos[i].table = table;
+		table->philos[i].left_fork = &table->forks[i];
+		table->philos[i].right_fork = &table->forks[(i + 1) % table->nb_philo];
 		if (pthread_create(&table->philos[i].thread, NULL,
 				&routine, &table->philos[i]) != 0)
 		{
@@ -41,12 +43,23 @@ bool	create_threads(t_table *table)
 
 static bool	init_table(t_table *table)
 {
+	int	i;
+
 	table->philos = malloc(sizeof(t_philo) * table->nb_philo);
 	if (!table->philos)
 		return (throw_error(ERR_ALLOC, "init_table"), false);
 	table->start_time = get_time_ms();
 	if (table->start_time == -1)
 		return (false);
+	table->forks = malloc(sizeof(pthread_mutex_t) * table->nb_philo);
+	if (!table->forks)
+		return (throw_error(ERR_ALLOC, "init_table"), false);
+	i = 0;
+	while (i < table->nb_philo)
+	{
+		pthread_mutex_init(&table->forks[i], NULL);
+		i++;
+	}
 	return (true);
 }
 
