@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/08 19:13:55 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/10 18:31:05 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static bool	init_table(t_table *table)
 		i++;
 	}
 	pthread_mutex_init(&table->print_lock, NULL);
+	pthread_mutex_init(&table->stop_lock, NULL);
 	return (true);
 }
 

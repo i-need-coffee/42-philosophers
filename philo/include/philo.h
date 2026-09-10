@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/08 17:12:48 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/10 18:29:43 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	last_meal_lock;
+	pthread_mutex_t	meals_eaten_lock;
 	t_table			*table;
 }	t_philo;
 
