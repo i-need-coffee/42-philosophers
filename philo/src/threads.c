@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/10 18:31:05 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/11 15:53:40 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	init_table(t_table *table);
 static void	init_philo(t_table *table, int i);
-static void	join_created_threads(t_philo *philos, int created_count);
+static bool	join_created_threads(t_philo *philos, int created_count);
 
 bool	create_threads(t_table *table)
 {
@@ -28,14 +28,18 @@ bool	create_threads(t_table *table)
 		init_philo(table, i);
 		if (pthread_create(&table->philos[i].thread, NULL,
 				&routine, &table->philos[i]) != 0)
-		{
-			throw_error(strerror(errno), "pthread_create");
-			join_created_threads(table->philos, i);
-			return (false);
-		}
+			return (throw_error(strerror(errno), "pthread_create"),
+				join_created_threads(table->philos, i), false);
 		i++;
 	}
-	join_created_threads(table->philos, table->nb_philo);
+	if (pthread_create(&table->watcher, NULL, &watcher_routine, table) != 0)
+		return (throw_error(strerror(errno), "pthread_create"),
+			stop_simulation(table), join_created_threads(table->philos,
+				table->nb_philo), false);
+	if (!join_created_threads(table->philos, table->nb_philo))
+		return (false);
+	if (pthread_join(table->watcher, NULL) != 0)
+		return (throw_error(strerror(errno), "pthread_join"), false);
 	return (true);
 }
 
@@ -73,15 +77,23 @@ static void	init_philo(t_table *table, int i)
 	table->philos[i].meals_eaten = 0;
 }
 
-static void	join_created_threads(t_philo *philos, int created_count)
+static bool	join_created_threads(t_philo *philos, int created_count)
 {
 	int	i;
+	int	error;
 
+	error = 0;
 	i = 0;
 	while (i < created_count)
 	{
 		if (pthread_join(philos[i].thread, NULL) != 0)
+		{
 			throw_error(strerror(errno), "pthread_join");
+			error = 1;
+		}
 		i++;
 	}
+	if (error)
+		return (false);
+	return (true);
 }

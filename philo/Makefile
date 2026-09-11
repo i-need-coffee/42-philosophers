@@ -6,7 +6,7 @@
 #    By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 11:39:14 by sjolliet          #+#    #+#              #
-#    Updated: 2026/09/11 14:27:05 by sjolliet         ###   ########.fr        #
+#    Updated: 2026/09/11 15:43:19 by sjolliet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS			= \
 	$(SRC_DIR)/parsing.c \
 	$(SRC_DIR)/threads.c \
 	$(SRC_DIR)/routine.c \
+	$(SRC_DIR)/watcher.c \
 	$(SRC_DIR)/utils/simulation.c \
 	$(SRC_DIR)/utils/cleanup.c \
 	$(SRC_DIR)/utils/ft_strlen.c \

@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/11 14:26:34 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/11 15:30:46 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ struct s_table
 	int				must_eat_count;
 	long			start_time;
 	bool			simulation_stop;
+	pthread_t		watcher;
 	pthread_mutex_t	stop_lock;
 	pthread_mutex_t	print_lock;
 	pthread_mutex_t	*forks;
@@ -78,5 +79,6 @@ void	ft_usleep(long ms, t_table *table);
 void	print_status(t_philo *philo, char *status);
 bool	is_simulation_stopped(t_table *table);
 void	stop_simulation(t_table *table);
+void	*watcher_routine(void *arg);
 
 #endif

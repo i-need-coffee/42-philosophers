@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 12:24:53 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/11 14:34:06 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/11 15:18:30 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	*routine(void *arg)
 				break ;
 			print_status(philo, "is thinking");
 		}
-		stop_simulation(table);
 	}
 	return (NULL);
 }
