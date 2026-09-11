@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/10 18:29:43 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/11 14:26:34 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,13 @@ struct s_table
 size_t	ft_strlen(const char *s);
 int		throw_error(char *err_msg, char *err_loc);
 bool	parse_args(t_table *table, char **argv);
-void	free_and_null(void **ptr);
 void	*routine(void *arg);
 bool	create_threads(t_table *table);
 void	cleanup(t_table *table);
 long	get_time_ms(void);
+void	ft_usleep(long ms, t_table *table);
+void	print_status(t_philo *philo, char *status);
+bool	is_simulation_stopped(t_table *table);
+void	stop_simulation(t_table *table);
 
 #endif

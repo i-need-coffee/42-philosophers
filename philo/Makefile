@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shadya <shadya@student.42.fr>              +#+  +:+       +#+         #
+#    By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 11:39:14 by sjolliet          #+#    #+#              #
-#    Updated: 2026/09/06 12:25:26 by shadya           ###   ########.fr        #
+#    Updated: 2026/09/11 14:27:05 by sjolliet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,16 @@ OBJ_DIR			= obj
 
 SRCS			= \
 	$(SRC_DIR)/main.c \
-	$(SRC_DIR)/utils.c \
 	$(SRC_DIR)/parsing.c \
 	$(SRC_DIR)/threads.c \
-	$(SRC_DIR)/routine.c
+	$(SRC_DIR)/routine.c \
+	$(SRC_DIR)/utils/simulation.c \
+	$(SRC_DIR)/utils/cleanup.c \
+	$(SRC_DIR)/utils/ft_strlen.c \
+	$(SRC_DIR)/utils/get_time_ms.c \
+	$(SRC_DIR)/utils/throw_error.c \
+	$(SRC_DIR)/utils/ft_usleep.c \
+	$(SRC_DIR)/utils/print_status.c
 
 OBJS			= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
@@ -36,7 +42,7 @@ $(NAME): $(OBJS)
 	@echo "✅ Philo compiled successfully!"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

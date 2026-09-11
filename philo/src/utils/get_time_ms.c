@@ -1,63 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/27 10:33:01 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/10 18:31:17 by sjolliet         ###   ########.fr       */
+/*   Created: 2026/09/11 14:15:25 by sjolliet          #+#    #+#             */
+/*   Updated: 2026/09/11 14:15:47 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-int	throw_error(char *err_msg, char *err_loc)
-{
-	write(2, "\033[31mERROR\033[0m ", 16);
-	write(2, err_msg, ft_strlen(err_msg));
-	write(2, ": ", 2);
-	write(2, err_loc, ft_strlen(err_loc));
-	write(2, "\n", 1);
-	return (EXIT_FAILURE);
-}
-
-void	free_and_null(void **ptr)
-{
-	if (ptr && *ptr)
-	{
-		free(*ptr);
-		*ptr = NULL;
-	}
-}
-
-void	cleanup(t_table *table)
-{
-	int	i;
-
-	if (!table)
-		return ;
-	free_and_null((void **)&table->philos);
-	i = 0;
-	while (i < table->nb_philo)
-	{
-		pthread_mutex_destroy(&table->forks[i]);
-		i++;
-	}
-	free_and_null((void **)&table->forks);
-	pthread_mutex_destroy(&table->print_lock);
-	pthread_mutex_destroy(&table->stop_lock);
-}
 
 long	get_time_ms(void)
 {
@@ -73,3 +26,4 @@ long	get_time_ms(void)
 	milliseconds = (seconds * 1000) + (microseconds / 1000);
 	return (milliseconds);
 }
+
