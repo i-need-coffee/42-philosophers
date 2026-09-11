@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:23:44 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/11 18:00:49 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/11 18:23:20 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ void	*watcher_routine(void *arg)
 				stop_simulation(table);
 				break ;
 			}
-			pthread_mutex_lock(&philos->last_meal_lock);
-			last_meal  = philos[i].last_meal;
-			pthread_mutex_unlock(&philos->last_meal_lock);
+			pthread_mutex_lock(&philos[i].last_meal_lock);
+			last_meal = philos[i].last_meal;
+			pthread_mutex_unlock(&philos[i].last_meal_lock);
 			if ((now - last_meal) >= table->time_to_die)
 			{
-				print_status(&philos[i], "died");
 				stop_simulation(table);
+				print_status(&philos[i], "died");
 				break ;
 			}
 			i++;
