@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/11 15:53:40 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/11 16:17:57 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static void	init_philo(t_table *table, int i)
 	table->philos[i].right_fork = &table->forks[(i + 1) % table->nb_philo];
 	table->philos[i].last_meal = table->start_time;
 	table->philos[i].meals_eaten = 0;
+	pthread_mutex_init(&table->philos[i].last_meal_lock, NULL);
+	pthread_mutex_init(&table->philos[i].meals_eaten_lock, NULL);
 }
 
 static bool	join_created_threads(t_philo *philos, int created_count)

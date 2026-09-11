@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 17:20:21 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/08 14:22:00 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/11 17:11:48 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	parse_args(t_table *table, char **argv)
 		value = convert_str_to_lld(argv[i]);
 		if (i == 1 && (value > INT_MAX || value <= 0))
 			error = throw_error(NB_PHILO, argv[i]);
-		if (i == 5 && (value > INT_MAX || value < 0))
+		if (i == 5 && (value > INT_MAX || value <= 0))
 			error = throw_error(EAT_COUNT, argv[i]);
 		if ((i > 1 && i < 5) && (value > LONG_MAX || value <= 0))
 			error = throw_error(TIME_VALUE, argv[i]);
