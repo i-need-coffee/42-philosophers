@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:23:44 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/11 18:23:20 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/12 16:33:21 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*watcher_routine(void *arg)
 
 	table = (t_table *)arg;
 	philos = table->philos;
-	while (1)
+	while (is_simulation_stopped(table) != true)
 	{
 		i = 0;
 		while (i < table->nb_philo)
@@ -39,16 +39,13 @@ void	*watcher_routine(void *arg)
 			if ((now - last_meal) >= table->time_to_die)
 			{
 				stop_simulation(table);
+				usleep(4000);
 				print_status(&philos[i], "died");
 				break ;
 			}
 			i++;
 		}
-		if (is_simulation_stopped(table))
-			break ;
 		usleep(1000);
 	}
 	return (NULL);
 }
-
-

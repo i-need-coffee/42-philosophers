@@ -6,13 +6,13 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:20:33 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/11 14:20:55 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/12 16:59:53 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_status(t_philo *philo, char *status)
+bool	print_status(t_philo *philo, char *status)
 {
 	long	timestamp;
 
@@ -21,9 +21,9 @@ void	print_status(t_philo *philo, char *status)
 	if (timestamp < 0)
 	{
 		pthread_mutex_unlock(&philo->table->print_lock);
-		stop_simulation(philo->table);
-		return ;
+		return (false);
 	}
 	printf("%ld %d %s\n", timestamp, philo->id, status);
 	pthread_mutex_unlock(&philo->table->print_lock);
+	return (true);
 }
