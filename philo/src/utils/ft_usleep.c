@@ -23,8 +23,10 @@ bool	ft_usleep(long ms, t_table *table)
 	now = get_time_ms() - start;
 	if (now < 0)
 		return (false);
-	while (now < ms && !is_simulation_stopped(table))
+	while (now < ms)
 	{
+		if (is_simulation_stopped(table))
+			return (false);
 		usleep(500);
 		now = get_time_ms() - start;
 		if (now < 0)

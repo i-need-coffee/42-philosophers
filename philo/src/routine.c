@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 12:24:53 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/12 18:29:11 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/12 20:01:42 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,27 @@ static bool	eat_meal(t_philo *philo);
 void	*routine(void *arg)
 {
 	t_philo	*philo;
-	t_table	*table;
 	int		took_fork;
 
 	philo = (t_philo *)arg;
-	table = philo->table;
 	took_fork = 0;
-	while (is_simulation_stopped(table) != true)
+	while (is_simulation_stopped(philo->table) != true)
 	{
-		if (table->nb_philo == 1)
+		if (philo->table->nb_philo == 1)
 		{
 			if (!took_fork)
 			{
 				if (!one_philo(philo))
-					return (stop_simulation(table), NULL);
+					return (stop_simulation(philo->table), NULL);
+				took_fork = 1;
 			}
-			took_fork = 1;
+			else
+				usleep(500);
 		}
 		else
 		{
 			if (!multiple_philos(philo))
-				return (stop_simulation(table), NULL);
+				return (stop_simulation(philo->table), NULL);
 		}
 	}
 	return (NULL);
