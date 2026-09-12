@@ -6,7 +6,7 @@
 /*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/11 16:17:57 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/12 15:33:45 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,30 @@ bool	create_threads(t_table *table)
 		if (pthread_create(&table->philos[i].thread, NULL,
 				&routine, &table->philos[i]) != 0)
 			return (throw_error(strerror(errno), "pthread_create"),
-				join_created_threads(table->philos, i), false);
+				join_created_threads(table->philos, i), cleanup(table), false);
 		i++;
 	}
 	if (pthread_create(&table->watcher, NULL, &watcher_routine, table) != 0)
 		return (throw_error(strerror(errno), "pthread_create"),
 			stop_simulation(table), join_created_threads(table->philos,
-				table->nb_philo), false);
+				table->nb_philo), cleanup(table), false);
+	return (true);
+}
+
+bool	join_threads(t_table *table)
+{
+	int	error;
+
+	error = 0;
 	if (!join_created_threads(table->philos, table->nb_philo))
-		return (false);
+		error = 1;
 	if (pthread_join(table->watcher, NULL) != 0)
-		return (throw_error(strerror(errno), "pthread_join"), false);
+	{
+		throw_error(strerror(errno), "pthread_join");
+		error = 1;
+	}
+	if (error)
+		return (false);
 	return (true);
 }
 
@@ -50,12 +63,13 @@ static bool	init_table(t_table *table)
 	table->philos = malloc(sizeof(t_philo) * table->nb_philo);
 	if (!table->philos)
 		return (throw_error(ERR_ALLOC, "init_table"), false);
-	table->start_time = get_time_ms();
-	if (table->start_time == -1)
-		return (false);
 	table->forks = malloc(sizeof(pthread_mutex_t) * table->nb_philo);
 	if (!table->forks)
-		return (throw_error(ERR_ALLOC, "init_table"), false);
+		return (free(table->philos),
+			throw_error(ERR_ALLOC, "init_table"), false);
+	table->start_time = get_time_ms();
+	if (table->start_time == -1)
+		return (free(table->philos), free(table->forks), false);
 	i = 0;
 	while (i < table->nb_philo)
 	{
