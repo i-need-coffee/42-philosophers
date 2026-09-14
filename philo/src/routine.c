@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 12:24:53 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/14 20:47:02 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/14 21:09:37 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	took_fork = 0;
+	if (philo->id % 2 == 0)
+		ft_usleep(1, philo->table);
 	while (is_simulation_stopped(philo->table) != true)
 	{
 		if (philo->table->nb_philo == 1)
@@ -53,22 +55,19 @@ static bool	one_philo(t_philo *philo)
 		pthread_mutex_unlock(philo->left_fork);
 		return (false);
 	}
+	if (!ft_usleep(philo->table->time_to_die, philo->table))
+	{
+		pthread_mutex_unlock(philo->left_fork);
+		return (false);
+	}
 	pthread_mutex_unlock(philo->left_fork);
 	return (true);
 }
 
 static bool	multiple_philos(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
-	{
-		if (!take_forks_and_eat(philo, philo->left_fork, philo->right_fork))
-			return (false);
-	}
-	else
-	{
-		if (!take_forks_and_eat(philo, philo->right_fork, philo->left_fork))
-			return (false);
-	}
+	if (!take_forks_and_eat(philo, philo->left_fork, philo->right_fork))
+		return (false);
 	if (!print_status(philo, "is sleeping"))
 		return (false);
 	if (!ft_usleep(philo->table->time_to_sleep, philo->table))
