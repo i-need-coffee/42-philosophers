@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/12 15:33:45 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/14 19:25:14 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ bool	create_threads(t_table *table)
 		init_philo(table, i);
 		if (pthread_create(&table->philos[i].thread, NULL,
 				&routine, &table->philos[i]) != 0)
-			return (throw_error(strerror(errno), "pthread_create"),
+			return (throw_error(THREAD_CREATE, "pthread_create"),
 				join_created_threads(table->philos, i), cleanup(table), false);
 		i++;
 	}
 	if (pthread_create(&table->watcher, NULL, &watcher_routine, table) != 0)
-		return (throw_error(strerror(errno), "pthread_create"),
+		return (throw_error(THREAD_CREATE, "pthread_create"),
 			stop_simulation(table), join_created_threads(table->philos,
 				table->nb_philo), cleanup(table), false);
 	return (true);
@@ -48,7 +48,7 @@ bool	join_threads(t_table *table)
 		error = 1;
 	if (pthread_join(table->watcher, NULL) != 0)
 	{
-		throw_error(strerror(errno), "pthread_join");
+		throw_error(THREAD_JOIN, "pthread_join");
 		error = 1;
 	}
 	if (error)
@@ -104,7 +104,7 @@ static bool	join_created_threads(t_philo *philos, int created_count)
 	{
 		if (pthread_join(philos[i].thread, NULL) != 0)
 		{
-			throw_error(strerror(errno), "pthread_join");
+			throw_error(THREAD_JOIN, "pthread_join");
 			error = 1;
 		}
 		i++;

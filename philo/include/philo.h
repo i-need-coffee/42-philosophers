@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/12 17:21:17 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/14 19:24:59 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define EAT_COUNT		"Must eat count must be an INT and bigger than 0"
 # define TIME_VALUE		"Time argument must be a LONG and bigger than 0"
 # define ERR_ALLOC 		"Cannot allocate memory"
+# define ERR_TIME		"Error while getting the time of day"
+# define THREAD_CREATE	"Error while creating threads"
+# define THREAD_JOIN	"Error while joigning threads"
 
 /* --  STRUCTS  -- */
 
