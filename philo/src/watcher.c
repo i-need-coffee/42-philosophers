@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   watcher.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:23:44 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/12 19:42:58 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/16 09:18:32 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ static bool	someone_died(t_philo *philo)
 		stop_simulation(philo->table);
 		return (true);
 	}
-	if ((now - last_meal) >= philo->table->time_to_die)
+	if ((now - last_meal) > philo->table->time_to_die)
 	{
 		stop_simulation(philo->table);
-		usleep(4000);
+		usleep(2000);
 		print_status(philo, "died");
 		return (true);
 	}

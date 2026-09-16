@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 12:24:53 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/14 20:47:02 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/16 09:16:36 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ static bool	one_philo(t_philo *philo)
 {
 	pthread_mutex_lock(philo->left_fork);
 	if (!print_status(philo, "has taken a fork"))
+	{
+		pthread_mutex_unlock(philo->left_fork);
+		return (false);
+	}
+	if (!ft_usleep(philo->table->time_to_die, philo->table))
 	{
 		pthread_mutex_unlock(philo->left_fork);
 		return (false);
