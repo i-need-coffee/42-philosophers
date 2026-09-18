@@ -6,41 +6,27 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:23:44 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/18 14:35:34 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 16:13:59 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+static bool	is_simulation_running(t_table *table);
 static bool	someone_died(t_philo *philo);
 static bool	ate_all_meals(t_philo *philo);
 
 void	*watcher_routine(void *arg)
 {
 	t_table	*table;
-	int		i;
-	int		philos_who_ate;
 
 	table = (t_table *)arg;
 	if (!wait_for_start(table))
 		return (NULL);
 	while (is_simulation_stopped(table) != true)
 	{
-		i = 0;
-		philos_who_ate = 0;
-		while (i < table->nb_philo)
-		{
-			if (someone_died(&table->philos[i]))
-				return (NULL);
-			if (table->must_eat_count && ate_all_meals(&table->philos[i]))
-				philos_who_ate++;
-			i++;
-		}
-		if (table->must_eat_count && philos_who_ate == table->nb_philo)
-		{
-			stop_simulation(table);
+		if (!is_simulation_running(table))
 			return (NULL);
-		}
 		usleep(1000);
 	}
 	return (NULL);
@@ -57,6 +43,29 @@ bool	check_death(t_philo *philo, long now)
 		printf("%ld %d died\n", now - philo->table->start_time, philo->id);
 	}
 	pthread_mutex_unlock(&philo->table->print_lock);
+	return (true);
+}
+
+static bool	is_simulation_running(t_table *table)
+{
+	int	i;
+	int	philos_who_ate;
+
+	i = 0;
+	philos_who_ate = 0;
+	while (i < table->nb_philo)
+	{
+		if (someone_died(&table->philos[i]))
+			return (false);
+		if (table->must_eat_count && ate_all_meals(&table->philos[i]))
+			philos_who_ate++;
+		i++;
+	}
+	if (table->must_eat_count && philos_who_ate == table->nb_philo)
+	{
+		stop_simulation(table);
+		return (false);
+	}
 	return (true);
 }
 
