@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/18 12:51:35 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 14:40:26 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ struct s_table
 	int				must_eat_count;
 	long			start_time;
 	bool			simulation_stop;
+	bool			ready;
 	pthread_t		watcher;
 	pthread_mutex_t	stop_lock;
 	pthread_mutex_t	print_lock;
@@ -89,5 +90,7 @@ bool	join_threads(t_table *table);
 bool	think(t_philo *philo);
 bool	take_forks_and_eat(t_philo *philo,
 			pthread_mutex_t *f1, pthread_mutex_t *f2);
+bool	wait_for_start(t_table *table);
+bool	start_simulation(t_table *table);
 
 #endif

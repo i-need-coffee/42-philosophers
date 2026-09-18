@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:23:44 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/18 12:51:47 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 14:35:34 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	*watcher_routine(void *arg)
 	int		philos_who_ate;
 
 	table = (t_table *)arg;
+	if (!wait_for_start(table))
+		return (NULL);
 	while (is_simulation_stopped(table) != true)
 	{
 		i = 0;

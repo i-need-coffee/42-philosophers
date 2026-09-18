@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 12:24:53 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/18 12:44:06 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 14:34:51 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*routine(void *arg)
 	int		took_fork;
 
 	philo = (t_philo *)arg;
+	if (!wait_for_start(philo->table))
+		return (NULL);
 	took_fork = 0;
 	while (is_simulation_stopped(philo->table) != true)
 	{

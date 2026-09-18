@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/18 12:19:08 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 14:41:47 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ bool	create_threads(t_table *table)
 		return (throw_error(THREAD_CREATE, "pthread_create"),
 			stop_simulation(table), join_created_threads(table->philos,
 				table->nb_philo), cleanup(table, table->nb_philo), false);
+	start_simulation(table);
 	return (true);
 }
 
@@ -89,7 +90,7 @@ static void	init_philo(t_table *table, int i)
 	table->philos[i].table = table;
 	table->philos[i].left_fork = &table->forks[i];
 	table->philos[i].right_fork = &table->forks[(i + 1) % table->nb_philo];
-	table->philos[i].last_meal = table->start_time;
+	table->philos[i].last_meal = 0;
 	table->philos[i].meals_eaten = 0;
 	pthread_mutex_init(&table->philos[i].last_meal_lock, NULL);
 	pthread_mutex_init(&table->philos[i].meals_eaten_lock, NULL);
