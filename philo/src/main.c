@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:14 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/12 15:12:15 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/18 12:07:29 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	if (!create_threads(&table))
 		return (EXIT_FAILURE);
 	if (!join_threads(&table))
-		return (cleanup(&table), EXIT_FAILURE);
-	cleanup(&table);
+		return (cleanup(&table, table.nb_philo), EXIT_FAILURE);
+	cleanup(&table, table.nb_philo);
 	return (EXIT_SUCCESS);
 }

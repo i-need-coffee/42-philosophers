@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:16:19 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/12 14:59:10 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/18 12:02:33 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	free_and_null(void **ptr)
 	}
 }
 
-void	cleanup(t_table *table)
+void	cleanup(t_table *table, int created_count)
 {
 	int	i;
 
 	if (!table)
 		return ;
 	i = 0;
-	while (i < table->nb_philo)
+	while (i < created_count)
 	{
 		pthread_mutex_destroy(&table->philos[i].last_meal_lock);
 		pthread_mutex_destroy(&table->philos[i].meals_eaten_lock);

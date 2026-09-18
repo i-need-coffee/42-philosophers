@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/18 11:28:12 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 12:19:08 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ bool	create_threads(t_table *table)
 		init_philo(table, i);
 		if (pthread_create(&table->philos[i].thread, NULL,
 				&routine, &table->philos[i]) != 0)
-			return (throw_error(THREAD_CREATE, "pthread_create"), stop_simulation(table),
-				join_created_threads(table->philos, i), cleanup(table), false);
+			return (throw_error(THREAD_CREATE, "pthread_create"),
+				stop_simulation(table),
+				join_created_threads(table->philos, i),
+				cleanup(table, i), false);
 		i++;
 	}
 	if (pthread_create(&table->watcher, NULL, &watcher_routine, table) != 0)
 		return (throw_error(THREAD_CREATE, "pthread_create"),
 			stop_simulation(table), join_created_threads(table->philos,
-				table->nb_philo), cleanup(table), false);
+				table->nb_philo), cleanup(table, table->nb_philo), false);
 	return (true);
 }
 

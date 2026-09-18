@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+         #
+#    By: shadya <shadya@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 11:39:14 by sjolliet          #+#    #+#              #
-#    Updated: 2026/09/11 15:43:19 by sjolliet         ###   ########.fr        #
+#    Updated: 2026/09/18 12:43:12 by shadya           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS			= \
 	$(SRC_DIR)/utils/get_time_ms.c \
 	$(SRC_DIR)/utils/throw_error.c \
 	$(SRC_DIR)/utils/ft_usleep.c \
-	$(SRC_DIR)/utils/print_status.c
+	$(SRC_DIR)/utils/print_status.c \
+	$(SRC_DIR)/utils/routine_actions.c
 
 OBJS			= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

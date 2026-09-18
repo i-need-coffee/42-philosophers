@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/14 19:24:59 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 12:44:31 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		throw_error(char *err_msg, char *err_loc);
 bool	parse_args(t_table *table, char **argv);
 void	*routine(void *arg);
 bool	create_threads(t_table *table);
-void	cleanup(t_table *table);
+void	cleanup(t_table *table, int created_count);
 long	get_time_ms(void);
 bool	ft_usleep(long ms, t_table *table);
 bool	print_status(t_philo *philo, char *status);
@@ -85,5 +85,8 @@ void	stop_simulation(t_table *table);
 void	*watcher_routine(void *arg);
 void	free_and_null(void **ptr);
 bool	join_threads(t_table *table);
+bool	think(t_philo *philo);
+bool	take_forks_and_eat(t_philo *philo,
+			pthread_mutex_t *f1, pthread_mutex_t *f2);
 
 #endif
