@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/06 12:24:53 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/16 09:16:36 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 11:26:00 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static bool	one_philo(t_philo *philo)
 
 static bool	multiple_philos(t_philo *philo)
 {
+	long	time_to_think;
+
 	if (philo->id % 2 == 0)
 	{
 		if (!take_forks_and_eat(philo, philo->left_fork, philo->right_fork))
@@ -80,6 +82,14 @@ static bool	multiple_philos(t_philo *philo)
 		return (false);
 	if (!print_status(philo, "is thinking"))
 		return (false);
+	time_to_think = 0;
+	if (philo->table->nb_philo % 2 != 0)
+		time_to_think = (2 * philo->table->time_to_eat - philo->table->time_to_sleep) / 2;
+	if (time_to_think > 0)
+	{
+		if (!ft_usleep(time_to_think, philo->table))
+			return (false);
+	}
 	return (true);
 }
 

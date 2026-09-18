@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/14 19:25:14 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 11:28:12 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	create_threads(t_table *table)
 		init_philo(table, i);
 		if (pthread_create(&table->philos[i].thread, NULL,
 				&routine, &table->philos[i]) != 0)
-			return (throw_error(THREAD_CREATE, "pthread_create"),
+			return (throw_error(THREAD_CREATE, "pthread_create"), stop_simulation(table),
 				join_created_threads(table->philos, i), cleanup(table), false);
 		i++;
 	}

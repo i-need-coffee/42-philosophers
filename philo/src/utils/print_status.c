@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_status.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:20:33 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/12 16:59:53 by sjolliet         ###   ########.fr       */
+/*   Updated: 2026/09/18 11:20:24 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 bool	print_status(t_philo *philo, char *status)
 {
-	long	timestamp;
+	long	now;
 
 	pthread_mutex_lock(&philo->table->print_lock);
-	timestamp = get_time_ms() - philo->table->start_time;
-	if (timestamp < 0)
+	if (is_simulation_stopped(philo->table))
 	{
 		pthread_mutex_unlock(&philo->table->print_lock);
 		return (false);
 	}
-	printf("%ld %d %s\n", timestamp, philo->id, status);
+	now = get_time_ms();
+	if (now < 0)
+	{
+		pthread_mutex_unlock(&philo->table->print_lock);
+		return (false);
+	}
+	printf("%ld %d %s\n",
+		now - philo->table->start_time, philo->id, status);
 	pthread_mutex_unlock(&philo->table->print_lock);
 	return (true);
 }

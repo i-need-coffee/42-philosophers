@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:23:44 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/16 09:18:32 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 11:22:44 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ void	*watcher_routine(void *arg)
 	int		philos_who_ate;
 
 	table = (t_table *)arg;
-	philos_who_ate = 0;
 	while (is_simulation_stopped(table) != true)
 	{
 		i = 0;
+		philos_who_ate = 0;
 		while (i < table->nb_philo)
 		{
 			if (someone_died(&table->philos[i]))
-				break ;
-			if (table->must_eat_count && philos_who_ate == table->nb_philo)
-			{
-				stop_simulation(table);
-				break ;
-			}
+				return (NULL);
 			if (table->must_eat_count && ate_all_meals(&table->philos[i]))
 				philos_who_ate++;
 			i++;
+		}
+		if (table->must_eat_count && philos_who_ate == table->nb_philo)
+		{
+			stop_simulation(table);
+			return (NULL);
 		}
 		usleep(1000);
 	}
@@ -46,25 +46,29 @@ void	*watcher_routine(void *arg)
 
 static bool	someone_died(t_philo *philo)
 {
-	long	last_meal;
 	long	now;
 
 	pthread_mutex_lock(&philo->last_meal_lock);
-	last_meal = philo->last_meal;
-	pthread_mutex_unlock(&philo->last_meal_lock);
 	now = get_time_ms();
 	if (now < 0)
 	{
+		pthread_mutex_unlock(&philo->last_meal_lock);
 		stop_simulation(philo->table);
 		return (true);
 	}
-	if ((now - last_meal) > philo->table->time_to_die)
+	if (now - philo->last_meal >= philo->table->time_to_die)
 	{
-		stop_simulation(philo->table);
-		usleep(2000);
-		print_status(philo, "died");
+		pthread_mutex_lock(&philo->table->print_lock);
+		if (!is_simulation_stopped(philo->table))
+		{
+			stop_simulation(philo->table);
+			printf("%ld %d died\n", now - philo->table->start_time, philo->id);
+		}
+		pthread_mutex_unlock(&philo->table->print_lock);
+		pthread_mutex_unlock(&philo->last_meal_lock);
 		return (true);
 	}
+	pthread_mutex_unlock(&philo->last_meal_lock);
 	return (false);
 }
 
