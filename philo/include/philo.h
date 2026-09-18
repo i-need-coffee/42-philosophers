@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 11:43:34 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/18 12:44:31 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 12:51:35 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ bool	print_status(t_philo *philo, char *status);
 bool	is_simulation_stopped(t_table *table);
 void	stop_simulation(t_table *table);
 void	*watcher_routine(void *arg);
+bool	check_death(t_philo *philo, long now);
 void	free_and_null(void **ptr);
 bool	join_threads(t_table *table);
 bool	think(t_philo *philo);

@@ -6,7 +6,7 @@
 /*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/11 14:23:44 by sjolliet          #+#    #+#             */
-/*   Updated: 2026/09/18 11:22:44 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/18 12:51:47 by shadya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,20 @@ void	*watcher_routine(void *arg)
 	return (NULL);
 }
 
+bool	check_death(t_philo *philo, long now)
+{
+	if (now - philo->last_meal < philo->table->time_to_die)
+		return (false);
+	pthread_mutex_lock(&philo->table->print_lock);
+	if (!is_simulation_stopped(philo->table))
+	{
+		stop_simulation(philo->table);
+		printf("%ld %d died\n", now - philo->table->start_time, philo->id);
+	}
+	pthread_mutex_unlock(&philo->table->print_lock);
+	return (true);
+}
+
 static bool	someone_died(t_philo *philo)
 {
 	long	now;
@@ -56,15 +70,8 @@ static bool	someone_died(t_philo *philo)
 		stop_simulation(philo->table);
 		return (true);
 	}
-	if (now - philo->last_meal >= philo->table->time_to_die)
+	if (check_death(philo, now))
 	{
-		pthread_mutex_lock(&philo->table->print_lock);
-		if (!is_simulation_stopped(philo->table))
-		{
-			stop_simulation(philo->table);
-			printf("%ld %d died\n", now - philo->table->start_time, philo->id);
-		}
-		pthread_mutex_unlock(&philo->table->print_lock);
 		pthread_mutex_unlock(&philo->last_meal_lock);
 		return (true);
 	}

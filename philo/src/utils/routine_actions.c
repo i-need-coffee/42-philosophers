@@ -49,8 +49,9 @@ bool	think(t_philo *philo)
 		return (false);
 	time_to_think = 0;
 	if (philo->table->nb_philo % 2 != 0)
-		time_to_think = (2 * philo->table->time_to_eat
-				- philo->table->time_to_sleep) / 2;
+		time_to_think = philo->table->time_to_eat
+			- philo->table->time_to_sleep / 2
+			- philo->table->time_to_sleep % 2;
 	if (time_to_think > 0)
 	{
 		if (!ft_usleep(time_to_think, philo->table))
@@ -65,7 +66,7 @@ static bool	eat_meal(t_philo *philo)
 
 	pthread_mutex_lock(&philo->last_meal_lock);
 	timestamp = get_time_ms();
-	if (timestamp < 0)
+	if (timestamp < 0 || check_death(philo, timestamp))
 	{
 		pthread_mutex_unlock(&philo->last_meal_lock);
 		return (false);
