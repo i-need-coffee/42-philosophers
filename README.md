@@ -70,4 +70,5 @@ https://en.wikipedia.org/wiki/Multithreading_(computer_architecture)
 AI tools were used as learning and productivity aids for :
 - asking questions about threads, race conditions and mutex
 - helping me understand how to handle errors (like what happens if a thread creation failed)
-- tell me how the order works inside the thread creation and join (when and where do you join the watcher thread for eg.)
+- telling me how the order works inside the thread creation and join (when and where do you join the watcher thread for eg.)
+- helping me find a solution to avoid having one of my philos dying before taking the forks
