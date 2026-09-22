@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shadya <shadya@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sjolliet <sjolliet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 07:51:54 by shadya            #+#    #+#             */
-/*   Updated: 2026/09/18 14:41:47 by shadya           ###   ########.fr       */
+/*   Updated: 2026/09/22 14:48:12 by sjolliet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,6 @@ static bool	init_table(t_table *table)
 	if (!table->forks)
 		return (free(table->philos),
 			throw_error(ERR_ALLOC, "init_table"), false);
-	table->start_time = get_time_ms();
-	if (table->start_time == -1)
-		return (free(table->philos), free(table->forks), false);
 	i = 0;
 	while (i < table->nb_philo)
 	{
